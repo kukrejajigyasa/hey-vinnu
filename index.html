@@ -120,7 +120,7 @@ body::before {
     align-items:center;
     justify-content:center;
 }
-.polaroid-container{
+/*.polaroid-container{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
@@ -137,11 +137,36 @@ body::before {
     transform:rotate(-2deg);
     transition:0.4s;
     position:relative;
+}*/
+.polaroid-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:25px;
+    max-width:1000px;
+    margin:auto;
+    justify-items:center;
+    align-items:center;
 }
+.polaroid{
+    width:220px;
+    background:white;
+    color:black;
+    padding:10px 10px 15px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    transform:rotate(-2deg);
+    transition:0.4s;
+    position:relative;
+}
+.polaroid:nth-child(1){ transform:rotate(-3deg); }
+.polaroid:nth-child(2){ transform:rotate(2deg); }
+.polaroid:nth-child(3){ transform:rotate(-2deg); }
+.polaroid:nth-child(4){ transform:rotate(3deg); }
 
+    /*
 .polaroid:nth-child(even){
     transform:rotate(3deg);
-}
+}*/
 
 .polaroid:hover{
     transform:scale(1.08) rotate(0deg);
