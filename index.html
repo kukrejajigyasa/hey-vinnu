@@ -271,6 +271,15 @@ body::before {
     opacity:0.8;
 }
 
+.pop {
+    animation: popAnim 0.3s forwards;
+}
+
+@keyframes popAnim {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
 /* FOOTER */
 footer{
     text-align:center;
@@ -399,20 +408,26 @@ setInterval(createHeart, 700);
 /* BALLOONS */
 function createBalloon(){
 
-    const balloon=document.createElement("div");
+    const balloon = document.createElement("div");
     balloon.classList.add("balloon");
 
-    const balloons=["🎈","🎈","✨"];
+    const balloons = ["🎈", "🎈", "✨"];
+    balloon.innerHTML = balloons[Math.floor(Math.random()*balloons.length)];
 
-    balloon.innerHTML=balloons[Math.floor(Math.random()*balloons.length)];
+    balloon.style.left = Math.random()*100 + "vw";
+    balloon.style.fontSize = (Math.random()*60 + 60) + "px";
+    balloon.style.animationDuration = (Math.random()*5 + 8) + "s";
 
-    balloon.style.left=Math.random()*100+"vw";
-    balloon.style.fontSize=(Math.random()*60+60)+"px";
-    balloon.style.animationDuration=(Math.random()*5+8)+"s";
+    // 👇 make clickable
+    balloon.style.pointerEvents = "auto";
+    balloon.style.cursor = "pointer";
+
+    // 💥 POP ON CLICK
+    balloon.addEventListener("click", () => popBalloon(balloon));
 
     document.body.appendChild(balloon);
 
-    setTimeout(()=>balloon.remove(),13000);
+    setTimeout(() => balloon.remove(), 13000);
 }
 setInterval(createBalloon,1000);
 
@@ -433,6 +448,15 @@ function openGift(){
     setTimeout(()=>{
         document.getElementById("surprise").style.display="block";
     },800);
+}
+
+function popBalloon(balloon){
+    balloon.classList.add("pop");
+    balloon.innerHTML = "💥";
+
+    setTimeout(() => {
+        balloon.remove();
+    }, 300);
 }
 
 /* CAKES */
