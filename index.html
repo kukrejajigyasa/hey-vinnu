@@ -279,6 +279,41 @@ body::before {
     0% { transform: scale(1); opacity: 1; }
     100% { transform: scale(2); opacity: 0; }
 }
+.ticker-section{
+    padding: 40px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+.ticker{
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(6px);
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.ticker-track{
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollText 15s linear infinite;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+@keyframes scrollText{
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
 
 /* FOOTER */
 footer{
@@ -320,6 +355,18 @@ footer{
     <br><br>
     — Jiggu ❤️
 </div>
+
+</section>
+<section class="ticker-section">
+
+    <div class="ticker">
+        <div class="ticker-track">
+            💙 Happy Birthday Vinnu 💙 &nbsp;&nbsp;✨&nbsp;&nbsp;
+            You are my favorite person ✨ &nbsp;&nbsp;💫&nbsp;&nbsp;
+            Wishing you endless happiness 🎂 &nbsp;&nbsp;💙&nbsp;&nbsp;
+            Stay blessed always ✨ &nbsp;&nbsp;🎈&nbsp;&nbsp;
+        </div>
+    </div>
 
 </section>
 
