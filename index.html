@@ -411,11 +411,17 @@ setInterval(createBalloon,1000);
 function openGift(){
 
     const box = document.getElementById("giftBox");
-
-    // open animation
     box.classList.add("open");
 
-    // 🎊 confetti burst
+    // 🎵 START MUSIC HERE (must be user click)
+    const music = document.getElementById("birthdayMusic");
+    music.volume = 0.5;
+
+    music.play().catch((e)=>{
+        console.log("Music blocked until user interacts");
+    });
+
+    // 🎊 confetti
     for(let i=0;i<25;i++){
         let c=document.createElement("div");
         c.innerHTML="🎊";
@@ -429,7 +435,7 @@ function openGift(){
         setTimeout(()=>c.remove(),2000);
     }
 
-    // 💙 show your surprise message
+    // 💙 show message
     setTimeout(()=>{
         document.getElementById("surprise").style.display="block";
     },800);
