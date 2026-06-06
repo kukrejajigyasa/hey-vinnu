@@ -501,7 +501,7 @@ function createBalloon(){
     const balloon = document.createElement("div");
     balloon.classList.add("balloon");
 
-    const balloons = ["🎈", "🎈", "✨"];
+    const balloons = ["🎈", "🎈", "✨","🎂","🧁"];
     balloon.innerHTML = balloons[Math.floor(Math.random()*balloons.length)];
 
     balloon.style.left = Math.random()*100 + "vw";
@@ -550,6 +550,7 @@ function popBalloon(balloon){
 }
 
 /* CAKES */
+    /*
 function createCake(){
 
     const cake=document.createElement("div");
@@ -568,6 +569,7 @@ function createCake(){
     setTimeout(()=>cake.remove(),14000);
 }
 setInterval(createCake,3000);
+    */
 
 </script>
 <audio id="birthdayMusic" loop>
