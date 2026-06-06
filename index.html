@@ -121,14 +121,12 @@ body::before {
     justify-content:center;
 }
 .polaroid-container{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
     gap:25px;
-    max-width:1000px;
-    margin:auto;
-    justify-items:center;
-    align-items:center;
 }
+
 .polaroid{
     width:220px;
     background:white;
