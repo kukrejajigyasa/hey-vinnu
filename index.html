@@ -5,27 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Vinnu 🎉</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;}
-
 body{
-    font-family:'Poppins',sans-serif;
+    margin:0;
+    font-family:Poppins;
     background: linear-gradient(135deg, #6a11cb, #2575fc, #00c6ff);
     overflow-x:hidden;
     color:white;
-}
-
-/* glow overlay */
-body::before{
-    content:"";
-    position:fixed;
-    width:100%;
-    height:100%;
-    background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 60%);
-    z-index:0;
 }
 
 /* HERO */
@@ -36,41 +25,30 @@ body::before{
     justify-content:center;
     align-items:center;
     text-align:center;
-    position:relative;
-    z-index:2;
 }
 
-.hero h1{
-    font-family:'Dancing Script',cursive;
-    font-size:5rem;
-    text-shadow:0 0 20px #fff;
+h1{
+    font-family:Dancing Script;
+    font-size:4.5rem;
+    text-shadow:0 0 20px white;
 }
 
-.hero p{
-    font-size:1.3rem;
-    margin-top:10px;
-}
-
-/* BUTTON */
 .btn{
-    margin-top:25px;
-    padding:15px 35px;
+    padding:15px 30px;
     border:none;
-    border-radius:30px;
+    border-radius:25px;
     background:white;
     color:#2575fc;
     font-weight:bold;
     cursor:pointer;
-    transition:0.3s;
+    margin-top:20px;
 }
 
-.btn:hover{transform:scale(1.1);}
-
-/* GIFT BOX */
+/* GIFT */
 .gift{
     font-size:4rem;
     cursor:pointer;
-    margin-top:25px;
+    margin-top:20px;
     animation:bounce 1.5s infinite;
 }
 
@@ -84,54 +62,14 @@ body::before{
     display:none;
     margin-top:20px;
     padding:20px;
-    background:rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.2);
     border-radius:15px;
-    backdrop-filter:blur(10px);
-}
-
-/* SECTION */
-.section{
-    padding:80px 20px;
-    text-align:center;
-    position:relative;
-    z-index:2;
-}
-
-.section h2{
-    font-size:2.5rem;
-    margin-bottom:25px;
-}
-
-/* POLAROIDS */
-.polaroid{
-    width:200px;
-    height:230px;
-    background:white;
-    color:black;
-    padding:10px;
-    border-radius:10px;
-    display:inline-block;
-    margin:10px;
-    transform:rotate(-3deg);
-    animation:float 6s infinite;
-}
-
-.polaroid img{
-    width:100%;
-    height:160px;
-    object-fit:cover;
-    border-radius:5px;
-}
-
-@keyframes float{
-    0%,100%{transform:translateY(0) rotate(-3deg);}
-    50%{transform:translateY(-15px) rotate(3deg);}
 }
 
 /* HEARTS */
 .heart{
     position:fixed;
-    top:-10px;
+    top:-20px;
     font-size:20px;
     animation:fall linear forwards;
 }
@@ -143,8 +81,8 @@ body::before{
 /* BALLOONS */
 .balloon{
     position:fixed;
-    bottom:-120px;
-    font-size:60px;
+    bottom:-100px;
+    font-size:50px;
     animation:rise linear forwards;
 }
 
@@ -152,7 +90,7 @@ body::before{
     to{transform:translateY(-120vh);}
 }
 
-/* FIREWORK CANVAS */
+/* CANVAS */
 canvas{
     position:fixed;
     top:0;
@@ -160,7 +98,6 @@ canvas{
     width:100%;
     height:100%;
     pointer-events:none;
-    z-index:1;
 }
 
 </style>
@@ -168,62 +105,44 @@ canvas{
 
 <body>
 
-<canvas id="fireworks"></canvas>
-
-<!-- MUSIC -->
-<audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d1a8e6c8b7.mp3?filename=happy-birthday-to-you-piano-version-110397.mp3">
-</audio>
+<canvas id="canvas"></canvas>
 
 <div class="hero">
 
 <h1>🎉 Happy Birthday Vinnu 🎉</h1>
 
-<p>💙 A magical celebration made with love by Jiggu 💙</p>
+<p>A celebration made with love 💙</p>
 
-<button class="btn" onclick="startAll()">Start Celebration 🎊</button>
+<button class="btn" onclick="start()">Start Celebration 🎊</button>
 
 <div class="gift" onclick="openGift()">🎁</div>
 
 <div class="surprise" id="surprise">
-💙 Dear Vinnu 💙<br><br>
-You are my favorite part of life.<br>
-Wishing you endless happiness & love 🎂
+💙 Happy Birthday Vinnu 💙<br><br>
+You are truly special ✨
 </div>
 
 </div>
 
-<!-- MEMORIES -->
-<div class="section">
-
-<h2>📸 Polaroid Memories</h2>
-
-<div class="polaroid">
-<img src="https://via.placeholder.com/200" />
-<p>Memory 1</p>
-</div>
-
-<div class="polaroid">
-<img src="https://via.placeholder.com/200" />
-<p>Memory 2</p>
-</div>
-
-<div class="polaroid">
-<img src="https://via.placeholder.com/200" />
-<p>Memory 3</p>
-</div>
-
-</div>
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d1a8e6c8b7.mp3">
+</audio>
 
 <script>
 
-/* START EVERYTHING */
-function startAll(){
+let ctx = document.getElementById("canvas").getContext("2d");
+let canvas = document.getElementById("canvas");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+/* START */
+function start(){
     document.getElementById("music").play();
-    confettiBurst();
-    setInterval(createHeart,200);
-    setInterval(createBalloon,800);
-    startFireworks();
+    setInterval(confetti, 150);
+    setInterval(createHeart, 250);
+    setInterval(createBalloon, 800);
+    fireworkLoop();
 }
 
 /* GIFT */
@@ -233,7 +152,7 @@ function openGift(){
 
 /* HEARTS */
 function createHeart(){
-    const h=document.createElement("div");
+    let h = document.createElement("div");
     h.className="heart";
     h.innerHTML="💙";
     h.style.left=Math.random()*100+"vw";
@@ -244,72 +163,46 @@ function createHeart(){
 
 /* BALLOONS */
 function createBalloon(){
-    const b=document.createElement("div");
+    let b=document.createElement("div");
     b.className="balloon";
     b.innerHTML="🎈";
     b.style.left=Math.random()*100+"vw";
     b.style.animationDuration=(Math.random()*5+6)+"s";
     document.body.appendChild(b);
-    setTimeout(()=>b.remove(),11000);
+    setTimeout(()=>b.remove(),10000);
 }
 
 /* CONFETTI */
-function confettiBurst(){
-    for(let i=0;i<120;i++){
-        let c=document.createElement("div");
-        c.innerHTML="🎊";
-        c.style.position="fixed";
-        c.style.left=Math.random()*100+"vw";
-        c.style.top="-10px";
-        c.style.fontSize="20px";
-        c.style.animation="fall 3s linear forwards";
-        document.body.appendChild(c);
-        setTimeout(()=>c.remove(),3000);
-    }
+function confetti(){
+    let x = Math.random()*canvas.width;
+    let y = 0;
+
+    let size = Math.random()*6+4;
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(x,y,size,size);
+
+    setTimeout(()=>{
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+    },2000);
 }
 
 /* FIREWORKS */
-function startFireworks(){
-    const canvas=document.getElementById("fireworks");
-    const ctx=canvas.getContext("2d");
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
-
-    let particles=[];
-
-    function Firework(){
-        this.x=Math.random()*canvas.width;
-        this.y=Math.random()*canvas.height/2;
-        this.radius=2;
-        this.color="white";
-        this.speed=2;
-    }
-
-    for(let i=0;i<40;i++){
-        particles.push(new Firework());
-    }
-
-    function animate(){
-        ctx.fillStyle="rgba(0,0,0,0.2)";
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-
-        particles.forEach(p=>{
+function fireworkLoop(){
+    setInterval(()=>{
+        for(let i=0;i<20;i++){
+            ctx.fillStyle = "#00c6ff";
             ctx.beginPath();
-            ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-            ctx.fillStyle="#00c6ff";
+            ctx.arc(
+                Math.random()*canvas.width,
+                Math.random()*canvas.height/2,
+                2,
+                0,
+                Math.PI*2
+            );
             ctx.fill();
-
-            p.y+=p.speed;
-            if(p.y>canvas.height){
-                p.y=0;
-                p.x=Math.random()*canvas.width;
-            }
-        });
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
+        }
+    },400);
 }
 
 </script>
