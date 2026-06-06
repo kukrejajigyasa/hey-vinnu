@@ -198,6 +198,79 @@ body::before {
     }
 }
 
+
+/* CENTER SCENE */
+.scene{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    margin-top:30px;
+    cursor:pointer;
+}
+
+/* GIFT BOX */
+.gift-box{
+    position:relative;
+    width:120px;
+    height:120px;
+    transform-style:preserve-3d;
+    animation:floatBox 2s infinite ease-in-out;
+}
+
+/* BOX BODY */
+.box{
+    position:absolute;
+    width:120px;
+    height:80px;
+    bottom:0;
+    background: linear-gradient(135deg, #0077ff, #00c6ff);
+    border-radius:10px;
+}
+
+/* LID */
+.lid{
+    position:absolute;
+    width:130px;
+    height:30px;
+    top:0;
+    left:-5px;
+    background: linear-gradient(135deg, #00c6ff, #0077ff);
+    border-radius:8px;
+    transition:0.6s;
+}
+
+/* RIBBON */
+.ribbon{
+    position:absolute;
+    width:20px;
+    height:120px;
+    background:white;
+    left:50%;
+    transform:translateX(-50%);
+    top:0;
+}
+
+/* FLOAT ANIMATION */
+@keyframes floatBox{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+/* OPEN ANIMATION */
+.open .lid{
+    transform:rotateX(120deg) translateY(-20px);
+    transform-origin:top;
+}
+
+/* TEXT */
+.gift-text{
+    margin-top:15px;
+    font-size:1rem;
+    color:white;
+    opacity:0.8;
+}
+
 /* FOOTER */
 footer{
     text-align:center;
@@ -215,10 +288,17 @@ footer{
 <h1>🎂 Happy Birthday Vinnu 💙</h1>
 
 <p>✨ A dreamy birthday universe created with love by Jiggu ✨</p>
+<div class="scene" onclick="openGift()">
 
-<button class="btn" onclick="showSurprise()">
-Tap here… I made something for you 😏🎁
-</button>
+    <div class="gift-box" id="giftBox">
+        <div class="lid"></div>
+        <div class="box"></div>
+        <div class="ribbon"></div>
+    </div>
+
+    <p class="gift-text">Tap here… I made something for you 😏🎁</p>
+
+</div>
 
 <div class="surprise" id="surprise">
     💙 Dear Vinnu 💙
@@ -327,6 +407,33 @@ function createBalloon(){
     setTimeout(()=>balloon.remove(),13000);
 }
 setInterval(createBalloon,1000);
+
+function openGift(){
+
+    const box = document.getElementById("giftBox");
+
+    // open animation
+    box.classList.add("open");
+
+    // 🎊 confetti burst
+    for(let i=0;i<25;i++){
+        let c=document.createElement("div");
+        c.innerHTML="🎊";
+        c.style.position="fixed";
+        c.style.left=Math.random()*100+"vw";
+        c.style.top="20vh";
+        c.style.fontSize="20px";
+        c.style.animation="fall 2s linear forwards";
+        document.body.appendChild(c);
+
+        setTimeout(()=>c.remove(),2000);
+    }
+
+    // 💙 show your surprise message
+    setTimeout(()=>{
+        document.getElementById("surprise").style.display="block";
+    },800);
+}
 
 /* CAKES */
 function createCake(){
